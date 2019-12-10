@@ -5,7 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <script src='form.js' ></script>
     <title>form-pro</title>
+    <script>
+      function test(payload){
+        window.needChange=false
+        console.log('test js ',payload)
+        if(payload.value===0&&payload.from=='sex'){//性别为男，不需要选择兴趣
+          window.reSetJs=[
+            {"name":'love',show:false},
+          ]
+          window.needChange=true
+        }
+        else if(payload.value===1&&payload.from=='sex'){
+          window.reSetJs=[
+            {"name":'love',show:true},
+          ]
+          window.needChange=true
+        }
+      }
+      </script>
   </head>
   <body>
     <noscript>
