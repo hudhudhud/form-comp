@@ -123,6 +123,11 @@ export default {
                   })
               })
             }
+            if(item.options instanceof Promise){
+              item.options.then(res=>{
+                item.options=res
+              })
+            }
             this.componentList.push(comp)
         })
     },

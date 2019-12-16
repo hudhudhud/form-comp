@@ -12,17 +12,45 @@
         window.needChange=false
         console.log('test js ',payload)
         if(payload.value===0&&payload.from=='sex'){//性别为男，不需要选择兴趣
-          window.reSetJs=[
-            {"name":'love',show:false},
-          ]
-          window.needChange=true
+            window.reSetJs=[
+              {"name":'love',show:true, 
+              "options":[
+                {value:0,'label':'足球'},
+                {value:1,'label':'篮球'},
+                {value:2,'label':'羽毛球'},
+              ],},
+            ]
+            window.needChange=true
         }
         else if(payload.value===1&&payload.from=='sex'){
-          window.reSetJs=[
-            {"name":'love',show:true},
-          ]
-          window.needChange=true
+            window.reSetJs=[
+              {"name":'love',show:true,
+              "options":[
+                {value:0,'label':'健身'},
+                {value:1,'label':'舞蹈'},
+                {value:2,'label':'游泳'},
+              ],},
+            ]
+            window.needChange=true
         }
+      }
+
+      function getData(){
+        return new Promise((res,rej)=>{
+          setTimeout(() => {
+            let opt=[
+                {value:0,'label':'足球'},
+                {value:1,'label':'篮球'},
+                {value:2,'label':'羽毛球'},
+              ]
+            window.reSetJs=[
+              {"name":'love',show:true, 
+              "options":opt,},
+            ]
+            window.needChange=true
+            res(opt)
+          }, 1000);
+        }) 
       }
       </script>
   </head>
@@ -33,4 +61,5 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+
 </html>

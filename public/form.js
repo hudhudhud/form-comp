@@ -107,9 +107,9 @@ this.formJs = {
         "value":[0,1],
         "name":'love',
         "options":[
-          {value:0,'label':'足球'},
-          {value:1,'label':'篮球'},
-          {value:2,'label':'羽毛球'},
+          {value:0,'label':'健身'},
+          {value:1,'label':'舞蹈'},
+          {value:2,'label':'游泳'},
         ],
         "attributes": [
           {

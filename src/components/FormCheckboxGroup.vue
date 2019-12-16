@@ -5,7 +5,7 @@
         </div>
         <div class="cell-value">
             <div v-model='status'>
-                <label class="cell-checkbox-label" v-for='(it,i) of item.options' :key='i'>
+                <label class="cell-checkbox-label" v-for='(it,i) of options' :key='i'>
                     <input type="checkbox" v-bind="$attrs" v-model='it.checked'  v-on='listeners' > 
                     <span>{{it.label}}</span>
                 </label>
@@ -60,6 +60,23 @@ export default {
                 this.status=val
             },
             immediate:true,
+            deep:true,
+        },
+        "item.options":{
+            handler(opt){
+                this.options=opt
+                opt.forEach(it=>{
+                    if(Array.isArray(this.status)&&this.status.includes(it.value)){
+                        this.$set(it,'checked',true)
+                    }
+                    else{
+                        this.$set(it,'checked',false)
+                    }
+                })
+               
+            },
+            deep:true,
+            immediate:true,
         }
     },
     computed: {
@@ -77,7 +94,8 @@ export default {
     },
     data(){
         return {
-            status:this.value
+            status:this.value,
+            options:this.item.options
         }
     },
 }
