@@ -7,13 +7,14 @@
             <div v-model='status'>
                 <label class="cell-checkbox-label" v-for='(it,i) of options' :key='i'>
                     <input type="checkbox" v-bind="$attrs" v-model='it.checked'  v-on='listeners' > 
-                    <span>{{it.label}}</span>
+                    <span>{{it[labelKey]}}</span>
                 </label>
             </div>
         </div>
     </section>
 </template>
 <script>
+import { type } from 'os'
 export default {
     props:{
         value:{
@@ -27,7 +28,7 @@ export default {
             default(){
                 return {}
             }
-        }
+        },
     },
     model:{
         prop:'value',
@@ -36,8 +37,9 @@ export default {
     watch:{
         status:{
             handler(val){
+                if(!Array.isArray(this.item.options)){this.options=[];return}
                 this.item.options.forEach(it=>{
-                    if(Array.isArray(val)&&val.includes(it.value)){
+                    if(Array.isArray(val)&&val.includes(it[this.valueKey])){
                         this.$set(it,'checked',true)
                     }
                     else{
@@ -64,9 +66,10 @@ export default {
         },
         "item.options":{
             handler(opt){
+                if(!Array.isArray(opt)){this.options=[];return}
                 this.options=opt
                 opt.forEach(it=>{
-                    if(Array.isArray(this.status)&&this.status.includes(it.value)){
+                    if(Array.isArray(this.status)&&this.status.includes(it[this.valueKey])){
                         this.$set(it,'checked',true)
                     }
                     else{
@@ -86,7 +89,7 @@ export default {
                 this.$listeners,
                 {
                     change: function (event) {
-                        vm.status = vm.item.options.filter(it=>it.checked).map(it=>it.value)
+                        vm.status = vm.item.options.filter(it=>it.checked).map(it=>it[vm.valueKey])
                     }
                 }
             )
@@ -95,7 +98,9 @@ export default {
     data(){
         return {
             status:this.value,
-            options:this.item.options
+            options:this.item.options,
+            labelKey:this.item.labelKey?this.item.labelKey:'label',
+            valueKey:this.item.valueKey?this.item.valueKey:'value'
         }
     },
 }

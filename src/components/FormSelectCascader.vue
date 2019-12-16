@@ -4,8 +4,8 @@
             <span class="cell-text">{{item.label}}</span>
         </div>
         <div class="cell-value">
-            <select v-model='selected' v-bind="$attrs" v-on="listeners">
-                <option :value='item[valueKey]' :label='item[labelKey]' v-for="(item,i) in options" :key='i'>{{item[labelKey]}}</option>
+            <select v-model='selected[index]' v-bind="$attrs" v-on="listeners" v-for="(it,index) in options" :key="index">
+                <option :value='item[valueKey]' :label='item[labelKey]' v-for="(item,i) in options[index]" :key='i'>{{item[labelKey]}}</option>
             </select>
         </div>
     </section>
@@ -14,7 +14,12 @@
 export default {
     //一个组件上的 v-model 默认会利用名为 value 的 prop 和名为 input 的事件
     props:{
-        value:'',
+        value:{
+            type:Array,
+            default:()=>{
+                return []
+            }
+        },
         item:{
             type:Object,
             default:()=>{
@@ -71,6 +76,8 @@ export default {
                 }
             )
         }
+    },
+    mounted(){
     }
 }
 </script>

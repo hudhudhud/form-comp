@@ -123,10 +123,19 @@ export default {
                   })
               })
             }
-            if(item.options instanceof Promise){
-              item.options.then(res=>{
+            if(item.options instanceof Function){
+              Promise.resolve(item.options()).then(res=>{
                 item.options=res
               })
+            }
+            if(item.type==='selectCascader'){
+              item.options.forEach((it,i) => {
+                   if(it instanceof Function){
+                      Promise.resolve(it()).then(res=>{
+                        this.$set(item.options,i,res)
+                      })
+                    }
+              });
             }
             this.componentList.push(comp)
         })
@@ -136,6 +145,11 @@ export default {
         window.reSetJs.forEach(rejs=>{
           let changeCompJs=this.formStruct.elements.find(item=>item.name===rejs.name)
           if(changeCompJs) Object.assign(changeCompJs,rejs)
+          if(changeCompJs.options instanceof Function){
+            Promise.resolve(changeCompJs.options()).then(res=>{
+              changeCompJs.options=res
+            })
+          }
           let changeComp = this.componentList.find(item=>item.name===rejs.name)
           if(changeComp){
             changeComp.item=changeCompJs

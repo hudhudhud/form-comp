@@ -103,14 +103,98 @@ this.formJs = {
       },
       {
         "type": "checkboxGroup",
-        "label":'兴趣爱好',
+        "label":'异步兴趣爱好',
         "value":[0,1],
         "name":'love',
-        "options":[
-          {value:0,'label':'健身'},
-          {value:1,'label':'舞蹈'},
-          {value:2,'label':'游泳'},
+        "options":()=>this.getData(),
+        "labelKey":'name',
+        "valueKey":'value',
+        "attributes": [
+          {
+            "name": "class",
+            "value": [
+           
+            ]
+          },
+          {
+            "name": "style",
+            "value": {
+              "background-color": "#fff",
+            }
+          },
+          {
+            "name": "name",
+            "value": "chk"
+          }
         ],
+        "callback":"test",
+      },
+      {
+        "type": "checkboxGroup",
+        "label":'同步兴趣爱好',
+        "value":[0,1],
+        "name":'loveSync',
+        "options":()=>this.getDataSync(),
+        "labelKey":'name',
+        "valueKey":'value',
+        "attributes": [
+          {
+            "name": "class",
+            "value": [
+           
+            ]
+          },
+          {
+            "name": "style",
+            "value": {
+              "background-color": "#fff",
+            }
+          },
+          {
+            "name": "name",
+            "value": "chk"
+          }
+        ],
+        "callback":"test",
+      },
+      {
+        "type": "select",
+        "label":'省',
+        "value":"",
+        "name":'province',
+        "options":()=>getProvince(),
+        "labelKey":'name',
+        "valueKey":'val',
+        "childrenKey":'children',
+        "attributes": [
+          {
+            "name": "class",
+            "value": [
+           
+            ]
+          },
+          {
+            "name": "style",
+            "value": {
+              "background-color": "#fff",
+            }
+          },
+          {
+            "name": "name",
+            "value": "chk"
+          }
+        ],
+        "callback":"test",
+      },
+      {
+        "type": "selectCascader",
+        "label":'级联地址',
+        "value":["0"],
+        "name":'address',
+        "options":[()=>getProvince(),[{val:"00",name:'杭州市'}, {val:"01",name:'余杭市'}]],
+        "labelKey":'name',
+        "valueKey":'val',
+        "childrenKey":'children',
         "attributes": [
           {
             "name": "class",
