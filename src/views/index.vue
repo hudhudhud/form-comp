@@ -128,15 +128,6 @@ export default {
                 item.options=res
               })
             }
-            if(item.type==='selectCascader'){
-              item.options.forEach((it,i) => {
-                   if(it instanceof Function){
-                      Promise.resolve(it()).then(res=>{
-                        this.$set(item.options,i,res)
-                      })
-                    }
-              });
-            }
             this.componentList.push(comp)
         })
     },

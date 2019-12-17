@@ -1,6 +1,6 @@
 this.formJs = {
     "js": [
-      //"http://10.90.13.61/test/test.js"
+      "http://localhost:8080/test.js"
     ],
     "elements": [
       {
@@ -106,7 +106,7 @@ this.formJs = {
         "label":'异步兴趣爱好',
         "value":[0,1],
         "name":'love',
-        "options":()=>this.getData(),
+        "options":()=>getData(),
         "labelKey":'name',
         "valueKey":'value',
         "attributes": [
@@ -134,7 +134,7 @@ this.formJs = {
         "label":'同步兴趣爱好',
         "value":[0,1],
         "name":'loveSync',
-        "options":()=>this.getDataSync(),
+        "options":()=>getDataSync(),
         "labelKey":'name',
         "valueKey":'value',
         "attributes": [
@@ -189,9 +189,9 @@ this.formJs = {
       {
         "type": "selectCascader",
         "label":'级联地址',
-        "value":["0"],
+        "value":["0","01","010"],
         "name":'address',
-        "options":[()=>getProvince(),[{val:"00",name:'杭州市'}, {val:"01",name:'余杭市'}]],
+        "options":[()=>getProvince(),(id)=>getCity(id),(id)=>getArea(id)],
         "labelKey":'name',
         "valueKey":'val',
         "childrenKey":'children',
