@@ -251,11 +251,34 @@ this.formJs = {
           },
         ],
         "callback":"test",
+      },
+      {
+        "type": "timePicker",
+        "label":'时间',
+        "value":'2008年11月11日',
+        "name":'time',
+        "pickerType":'date',//'datetime', 'date', 'time'
+        "startDate":'1990-01-01',
+        // "formatStr":"YYYY年MM月DD日",//'默认格式YYYY-MM-DD',
+        "attributes": [
+          {
+            "name": "placeholder",
+            "value": "请选择时间"
+          },
+          {
+            "name": "class",
+            "value": [
+           
+            ]
+          },
+          {
+            "name": "style",
+            "value": {
+              "background-color": "#fff",
+            }
+          },
+        ],
+        "callback":"test",
       }
     ]
   }
-
-
-this.reSetJs=[
-  {"name":'love',show:true}
-]

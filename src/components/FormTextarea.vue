@@ -50,7 +50,6 @@ export default {
     },
     data(){
         return {
-            inputState:'',
             txt:this.value,
             autoSize:this.item.autoSize?this.item.autoSize:false
         }
