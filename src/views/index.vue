@@ -68,7 +68,7 @@ export default {
       let val=vals[0]
       let item=vals[1]
       if(typeof item.callback === 'function'){
-          item.callback({options:item.options,value:val,from:item.name})
+          item.callback({value:val,from:item.name})
           if(window.needChange){
               this.reSetFormJs()
           }

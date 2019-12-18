@@ -137,7 +137,7 @@ this.formJs = {
       {
         "type": "checkboxGroup",
         "label":'异步兴趣爱好',
-        "value":[0,1],
+        "value":[0],
         "name":'love',
         "options":()=>getData(),
         "labelKey":'name',
