@@ -4,9 +4,9 @@
             <span class="cell-text">{{item.label}}</span>
         </div>
         <div class="cell-value">
-            <div v-model='status'>
+            <div>
                 <label class="cell-radio-label" v-for='(it,i) of item.options' :key='i'>
-                    <input type="radio" v-bind="$attrs" v-on="$listeners" :checked='status==it.value' @change='status=it.value'> 
+                    <input type="radio" v-bind="$attrs" v-on="listeners" :checked='status==it.value' @change='status=it.value'> 
                     <span>{{it.label}}</span>
                 </label>
             </div>
@@ -26,23 +26,30 @@ export default {
     },
     model:{
         prop:'value',
-        event:'change',
+        event:'input',
     },
     watch:{
-        status(val){
-            if(typeof this.item.callback === 'function'){
-                this.item.callback({value:val,from:this.item.name})
-                if(window.needChange){
-                    this.$emit('reSetFormJs')
-                }
-            }
-            this.$emit('change',val)
-        },
         value:{
             handler(val){
                 this.status=val
             },
             immediate:true,
+        },
+        status(val){
+            this.$emit('input',val)
+        }
+    },
+    computed: {
+        listeners: function () {
+            var vm = this
+            return Object.assign({},
+                this.$listeners,
+                {
+                    input: function (event) {
+                        //vm.$emit('input', event.target.value)
+                    }
+                }
+            )
         }
     },
     data(){

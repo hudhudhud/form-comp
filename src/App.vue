@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view />
+    <keep-alive v-if='$route.meta&&$route.meta.keepAlive'>
+        <router-view />
+    </keep-alive>
+    <router-view v-else/>
   </div>
 </template>
 
@@ -16,7 +19,7 @@ export default {
 .cell-field{
   display: flex;
   width:100%;
-  height: 48px;
+  min-height: 48px;
   line-height: 1;
   padding: 0 10px;
   font-size: 16px;

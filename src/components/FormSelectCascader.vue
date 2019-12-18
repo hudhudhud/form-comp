@@ -68,12 +68,6 @@ export default {
         },
         selected:{
             handler(val){
-                if(typeof this.item.callback === 'function'){
-                    this.item.callback({options:this.options,value:val,from:this.item.name})
-                    if(window.needChange){
-                        this.$emit('reSetFormJs')
-                    }
-                }
                 this.$emit('input',val)
 
                 //触发下级函数
@@ -115,10 +109,12 @@ export default {
                         vm.changeIndex=event.target.name
                         //清空后面项内容
                         vm.selected.forEach((it,i)=>{
-                            if(i>(vm.changeIndex-''))vm.selected[i]=''
+                            if(i>(vm.changeIndex-'')){
+                                vm.selected[i]=''
+                                vm.options[i]=[]
+                            }
                         })
                         vm.selected[event.target.name]=event.target.value
-                        vm.$emit('input', vm.selected)
                     }
                 }
             )

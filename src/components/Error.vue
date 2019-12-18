@@ -1,11 +1,19 @@
 <template>
-    <section>
-        error components
+    <section class="cell-field">
+      {{item.type}}  error components
     </section>
 </template>
 <script>
 export default {
-    name:'error'
+    name:'error',
+    props:{
+        item:{
+            type:Object,
+            default:()=>{
+                return {}
+            }
+        }
+    }
 }
 </script>
 

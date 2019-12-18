@@ -1,5 +1,6 @@
+var needChange=false
 function test(payload){
-    window.needChange=false
+    needChange=false
     console.log('test js ',payload)
     if(payload.from=='sex'){//性别为男，不需要选择兴趣
         window.reSetJs=[
@@ -14,7 +15,7 @@ function test(payload){
             "options":()=>getDataSync(payload.value)
           },
         ]
-        window.needChange=true
+        needChange=true
     }
     // if(payload.from=='address'){
     //     window.reSetJs=[
@@ -23,7 +24,7 @@ function test(payload){
     //         label:payload.value.join(), 
     //       },
     //     ]
-    //     window.needChange=true
+    //     needChange=true
     // }
   }
 
@@ -46,7 +47,6 @@ function test(payload){
           ]
         }
         res(opt)
-        window.needChange=true
       }, 1000);
     }) 
   }
@@ -67,7 +67,6 @@ function test(payload){
         {value:2,name:'游泳'},
       ]
     }
-    window.needChange=true
     return opt
   }
   
@@ -79,6 +78,8 @@ function test(payload){
       },500);
     })
   }
+
+
   function getCity(pro){
     return new Promise((res,rej)=>{
       setTimeout(() => {
@@ -93,6 +94,8 @@ function test(payload){
       }, 500);
     })
   }
+
+
   function getArea(pro){
     return new Promise((res,rej)=>{
       setTimeout(() => {

@@ -73,6 +73,43 @@ this.formJs = {
         ]
       },
       {
+        "type": "textarea",
+        "label":'自我介绍',
+        "value":'123',
+        "name":'intro',
+        "autoSize":{maxHeight:100,minHeight:30},//true
+        "maxLen":'100',
+        "attributes": [
+          {
+            "name": "placeholder",
+            "value": "自我介绍"
+          },
+          {
+            "name": "class",
+            "value": [
+              "cls-init"
+            ]
+          },
+          {
+            "name": "style",
+            "value": {
+              "background-color": "#fff"
+            }
+          },
+          {
+            "name": "name",
+            "value": "txt"
+          }
+        ],
+        "events": [
+          {
+            "name": "click",
+            "handler": "test"
+          }
+        ],
+        callback:(res)=>console.log(res)
+      },
+      {
         "type": "radio",
         "label":'性别',
         "value":1,
@@ -94,10 +131,6 @@ this.formJs = {
               "background-color": "#fff",
             }
           },
-          {
-            "name": "name",
-            "value": "chk"
-          }
         ],
         "callback":"test",
       },
@@ -122,10 +155,6 @@ this.formJs = {
               "background-color": "#fff",
             }
           },
-          {
-            "name": "name",
-            "value": "chk"
-          }
         ],
         "callback":"test",
       },
@@ -150,10 +179,6 @@ this.formJs = {
               "background-color": "#fff",
             }
           },
-          {
-            "name": "name",
-            "value": "chk"
-          }
         ],
         "callback":"test",
       },
@@ -165,7 +190,6 @@ this.formJs = {
         "options":()=>getProvince(),
         "labelKey":'name',
         "valueKey":'val',
-        "childrenKey":'children',
         "attributes": [
           {
             "name": "class",
@@ -179,10 +203,6 @@ this.formJs = {
               "background-color": "#fff",
             }
           },
-          {
-            "name": "name",
-            "value": "chk"
-          }
         ],
         "callback":"test",
       },
@@ -208,10 +228,6 @@ this.formJs = {
               "background-color": "#fff",
             }
           },
-          {
-            "name": "name",
-            "value": "chk"
-          }
         ],
         "callback":"test",
       },
@@ -233,10 +249,6 @@ this.formJs = {
               "background-color": "#fff",
             }
           },
-          {
-            "name": "name",
-            "value": "chk"
-          }
         ],
         "callback":"test",
       }

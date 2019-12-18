@@ -1,12 +1,18 @@
 <template>
   <div class="form-list">
     <div class="form">
-      <!-- <keep-alive> -->
-             <component v-for='(item,i) in componentList' :key='i' :is='item.comp' v-model='item.item.value' :item='item.item' 
-        v-bind="item.attr" v-on='item.events' @reSetFormJs='reSetFormJs' v-show='item.item.show!==false'></component>
-      <!-- </keep-alive> -->
+        <component 
+          v-for='(item,i) in componentList' 
+          :key='i' 
+          :is='item.comp' 
+          v-model='item.item.value' 
+          :item='item.item' 
+          v-bind="item.attr" v-on='item.events'
+          @reSetFormJs='reSetFormJs' 
+          v-show='item.item.show!==false'
+          @input='input($event,item.item)'>
+        </component>
     </div>
-    <!-- <component :is='name' @click='click' v-model='test'></component> -->
     <div class="btns">
       <mt-button type="primary" @click='submit'>提交</mt-button>
       <mt-button type="default" @click='reset'>重置</mt-button>
@@ -25,24 +31,21 @@ export default {
   },
   data(){
     return {
-      name:'FormCheckbox',
-      test:true,
-      isInit:true,
       formStruct:null,
       componentList:[]
     }
   },
-  watch:{
-      formStruct:{
-        handler(){
-            if(!this.isInit){//第一次不需要
-                console.log('rebuild from watch.........')
-                this.reBuild()
-            }
-        },
-        deep:true
-      }
-  },
+  // watch:{
+  //     formStruct:{
+  //       handler(){
+  //           if(!this.isInit){//第一次不需要
+  //               console.log('rebuild from watch.........')
+  //               this.reBuild()
+  //           }
+  //       },
+  //       deep:true
+  //     }
+  // },
   async mounted(){
     //let { data } = await this.$axios.get("http://10.90.13.61/test/test.json")
     this.formStruct=window.formJs
@@ -52,18 +55,24 @@ export default {
       })
       //所有js加载完成再初始化数据，否则js中的函数还无法获取
       Promise.all(jsPromiseList).then(()=>{
-        console.log('rebuild from mounted.........')
         this.reBuild()
       })
     }
     else{
-      console.log('rebuild from mounted.........')
       this.reBuild()
     }
   },
   methods:{
-    click(){
-      console.log('click')
+    //回调处理
+    input(...vals){
+      let val=vals[0]
+      let item=vals[1]
+      if(typeof item.callback === 'function'){
+          item.callback({options:item.options,value:val,from:item.name})
+          if(window.needChange){
+              this.reSetFormJs()
+          }
+      }
     },
     jsLoad(url){
       return new Promise((res,rej)=>{
@@ -115,7 +124,7 @@ export default {
                         }
                         
                         if(item.callback){
-                          item.callback = window[item.callback]
+                          item.callback = typeof item.callback==='string'?window[item.callback]:item.callback
                         }
                   })
                   instance.catch(e=>{

@@ -22,14 +22,6 @@ export default {
             }
         }
     },
-    data(){
-        return {
-            selected:this.value,
-            options:this.item.options,
-            labelKey:this.item.labelKey?this.item.labelKey:'label',
-            valueKey:this.item.valueKey?this.item.valueKey:'value',
-        }
-    },
     watch:{
         value:{
             handler(val){
@@ -40,12 +32,6 @@ export default {
         },
         selected:{
             handler(val){
-                if(typeof this.item.callback === 'function'){
-                    this.item.callback({value:val,from:this.item.name})
-                    if(window.needChange){
-                        this.$emit('reSetFormJs')
-                    }
-                }
                 this.$emit('input',val)
             },
             deep:true,
@@ -66,11 +52,19 @@ export default {
                 this.$listeners,
                 {
                     input: function (event) {
-                        vm.$emit('input', event.target.value)
+                        //vm.$emit('input', event.target.value)
                     }
                 }
             )
         }
-    }
+    },
+    data(){
+        return {
+            selected:this.value,
+            options:this.item.options,
+            labelKey:this.item.labelKey?this.item.labelKey:'label',
+            valueKey:this.item.valueKey?this.item.valueKey:'value',
+        }
+    },
 }
 </script>
