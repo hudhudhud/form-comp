@@ -54,8 +54,12 @@ export default {
         return this.jsLoad(url)
       })
       //所有js加载完成再初始化数据，否则js中的函数还无法获取
-      Promise.all(jsPromiseList).then(()=>{
+      Promise.all(jsPromiseList)
+      .then(()=>{
         this.reBuild()
+      })
+      .catch((e)=>{
+        throw new Error(e)
       })
     }
     else{
@@ -78,17 +82,11 @@ export default {
       return new Promise((res,rej)=>{
           let ele=document.createElement('script')
           ele.setAttribute('type','text/javascript')
-          if(ele.readyState) {  // only required for IE <9
-            ele.onreadystatechange = function() {
-              if (ele.readyState === "loaded" || ele.readyState === "complete" ) {
-                ele.onreadystatechange = null;
-                res()
-              }
-            };
-          } else {
-            ele.onload = function() {
-              res()
-            };
+          ele.onload = function() {
+            res()
+          };
+          ele.onerror=function(){
+            rej(new Error('js load faild:'+url))
           }
           ele.setAttribute('src',url)
           document.body.append(ele)

@@ -36,8 +36,14 @@ export default {
         },
         txt(val){
             if(this.item.regexp){
-              let reg = new RegExp(this.item.regexp,'gim')
-              this.inputState=reg.test(val)?'success':'error'
+                let regType=Object.prototype.toString.call(this.item.regexp)
+                if(regType==='[object RegExp]'){
+                    this.inputState=this.item.regexp.test(val)?'success':'error'
+                }
+                else if(regType==='[object String]'){
+                    let reg = new RegExp(this.item.regexp,'gim')
+                    this.inputState=reg.test(val)?'success':'error'
+                }
             }
             this.$emit('input',val)
         }

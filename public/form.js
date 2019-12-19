@@ -41,7 +41,7 @@ this.formJs = {
         "type": "input",
         "label":'年龄',
         "value":'',
-        "regexp":'^[0-9]*$',
+        "regexp":/^[0-9]*$/,//'^[0-9]*$',可正则可字符串
         "name":'age',
         "attributes": [
           {
@@ -255,7 +255,7 @@ this.formJs = {
       {
         "type": "timePicker",
         "label":'时间',
-        "value":'2008年11月11日',
+        "value":'2008-11-11',
         "name":'time',
         "pickerType":'date',//'datetime', 'date', 'time'
         "startDate":'1990-01-01',

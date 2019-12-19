@@ -4,7 +4,7 @@
             <span class="cell-text">{{item.label}}</span>
         </div>
         <div class="cell-value">
-            <div v-model='status'>
+            <div>
                 <label class="cell-checkbox-label" v-for='(it,i) of options' :key='i'>
                     <input type="checkbox" v-bind="$attrs" v-model='it.checked'  v-on='listeners' > 
                     <span>{{it[labelKey]}}</span>
