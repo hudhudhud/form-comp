@@ -121,9 +121,7 @@ this.formJs = {
         "attributes": [
           {
             "name": "class",
-            "value": [
-           
-            ]
+            "value": [ ]
           },
           {
             "name": "style",
@@ -145,9 +143,7 @@ this.formJs = {
         "attributes": [
           {
             "name": "class",
-            "value": [
-           
-            ]
+            "value": [ ]
           },
           {
             "name": "style",
@@ -169,9 +165,7 @@ this.formJs = {
         "attributes": [
           {
             "name": "class",
-            "value": [
-           
-            ]
+            "value": [ ]
           },
           {
             "name": "style",
@@ -193,9 +187,7 @@ this.formJs = {
         "attributes": [
           {
             "name": "class",
-            "value": [
-           
-            ]
+            "value": [ ]
           },
           {
             "name": "style",
@@ -239,9 +231,7 @@ this.formJs = {
         "attributes": [
           {
             "name": "class",
-            "value": [
-           
-            ]
+            "value": [ ]
           },
           {
             "name": "style",
@@ -267,9 +257,86 @@ this.formJs = {
           },
           {
             "name": "class",
-            "value": [
-           
-            ]
+            "value": [ ]
+          },
+          {
+            "name": "style",
+            "value": {
+              "background-color": "#fff",
+            }
+          },
+        ],
+        "callback":"test",
+      },
+      {
+        "type": "picker",
+        "label":'数量',
+        "value":'',
+        "name":'number',
+        "options":[5,6,7,8,9],
+        "multiple":false,
+        "attributes": [
+          {
+            "name": "placeholder",
+            "value": "请选择数量"
+          },
+          {
+            "name": "class",
+            "value": []
+          },
+          {
+            "name": "style",
+            "value": {
+              "background-color": "#fff",
+            }
+          },
+        ],
+        "callback":"test",
+      },
+      {
+        "type": "picker",
+        "label":'异步数量对象',
+        "value":'',
+        "name":'number',
+        "options":()=>getNumber(),
+        "multiple":false,
+        "showKey":'name',
+        "valueKey":'value',
+        "attributes": [
+          {
+            "name": "placeholder",
+            "value": "请选择数量"
+          },
+          {
+            "name": "class",
+            "value": []
+          },
+          {
+            "name": "style",
+            "value": {
+              "background-color": "#fff",
+            }
+          },
+        ],
+        "callback":"test",
+      },
+      {
+        "type": "picker",
+        "label":'异步多列对象',
+        "value":'',
+        "name":'number',
+        "options":[()=>getNumber(),()=>getNumber()],
+        "multiple":true,
+        "showKey":'name',
+        "valueKey":'value',
+        "attributes": [
+          {
+            "name": "placeholder",
+            "value": "请选择数量"
+          },
+          {
+            "name": "class",
+            "value": []
           },
           {
             "name": "style",

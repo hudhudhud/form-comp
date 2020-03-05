@@ -3,7 +3,7 @@
     <div class="cell-title">
         <span class="cell-text">{{item.label}}</span>
     </div>
-    <div class="cell-value">
+    <div class="cell-value"  @touchmove.prevent>
         <input type="text" v-model='inputValue' @click="openPicker" v-bind="$attrs" readonly>
         <mt-datetime-picker ref="picker" 
             :type="pickerType" 

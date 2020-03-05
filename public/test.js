@@ -110,3 +110,13 @@ function test(payload){
       }, 500);
     })
   }
+
+
+  function getNumber(){
+      return new Promise((res,rej)=>{
+        setTimeout(() => {
+            let ops=[{value:0,name:'zero'},{value:1,name:'one'},{value:2,name:'two'},{value:3,name:'three'},{value:4,name:'four'}]
+            res(ops)
+        }, 500);
+      })
+  }

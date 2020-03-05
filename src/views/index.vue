@@ -203,6 +203,8 @@ export default {
 </style>
 <style scoped lang='scss'>
 .form-list{
+  padding-bottom:50px;
+  overflow-y:scroll;
   .btns{
     width:100%;
     position:fixed;
@@ -212,6 +214,7 @@ export default {
     display:flex;
     justify-content: space-around;
     align-items: center;
+    background-color:#fff;
   }
 }
 </style>
