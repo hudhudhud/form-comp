@@ -7,14 +7,6 @@
         <input type="text" v-model='showValue' @click="popupVisible=true" v-bind="$attrs" readonly>
         <input type="hidden" v-model='realValue'>
     </div>
-    <!-- <mt-popup v-model="popupVisible" position="bottom">
-        <mt-picker ref='picker' :slots="slots" @change="onValuesChange" showToolbar>
-            <div class="btns">
-                <mt-button @click="popupVisible=false">取消</mt-button>
-                <mt-button @click="handleConfirm">确认</mt-button>
-            </div>
-        </mt-picker>
-    </mt-popup> -->
     <div @touchmove.prevent>
         <mt-popup v-model="popupVisible" position="bottom">
             <mt-picker ref='picker' :slots="slots1" @change="onValuesChange" showToolbar :valueKey='item.showKey?item.showKey:undefined'>

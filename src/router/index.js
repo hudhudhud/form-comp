@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '../views/index.vue'
+import Form from '../views/form.vue'
 
 Vue.use(Router)
 
@@ -12,6 +13,13 @@ export default new Router({
             meta:{
                 keepAlive:true
             }
-        },
+        },{
+            path: '/form',
+            name: 'form',
+            component: Form,
+            meta:{
+                keepAlive:true
+            }
+        }
     ]
 })

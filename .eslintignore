@@ -5,4 +5,4 @@ public/**
 .postcssrc.js
 babel.config.js
 vue.config.js
-
+src/**

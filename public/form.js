@@ -22,7 +22,7 @@ this.formJs = {
           {
             "name": "style",
             "value": {
-              "background-color": "#fff"
+              "background-color": "#red"
             }
           },
           {
