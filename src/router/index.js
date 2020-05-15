@@ -20,6 +20,13 @@ export default new Router({
             meta:{
                 keepAlive:true
             }
+        },{
+            path: '/test',
+            name: 'test',
+            component: ()=>import('../views/test.vue'),
+            meta:{
+                keepAlive:true
+            }
         }
     ]
 })
