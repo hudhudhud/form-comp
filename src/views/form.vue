@@ -4,7 +4,7 @@
             <div v-if='formStruct.descHtml' v-html='formStruct.descHtml'>
                 {{formStruct.descHtml}}
             </div>
-            <FormMenuModule  v-if='showAsModule' :modules='modules' :class="formStruct.class" :init='initFun'/>
+            <FormMenuModule  v-if='showAsModule' :modules='modules' :class="formStruct.class" :init='initFun' :jsCompleted='jsCompleted' :onlyShow='isEdit&&!hasEditPermission'/>
             <FormMenu v-else :params='formStruct.params' :item='compObj'  :init='initFun' :jsCompleted='jsCompleted' :onlyShow='isEdit&&!hasEditPermission'/>
         </div>
         <div class="btns" v-if='initCompleted'>

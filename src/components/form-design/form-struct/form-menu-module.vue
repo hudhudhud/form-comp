@@ -3,9 +3,11 @@
         <el-collapse v-model="activeNames">
             <template v-for='(item,i) in modules'>
                 <el-collapse-item :title="item.module" :name="item.module" v-if='item.module' :key='i' :class="item.class">
-                    <FormMenu :params='item.params' :item='item.compObj' :init='init' />
+                    <FormMenu :params='item.params' :item='item.compObj' :init='init' :jsCompleted='jsCompletedIn' 
+                    :onlyShow="onlyShowIn" />
                 </el-collapse-item>
-                <FormMenu :params='item.params' :item='item.compObj' v-else :key='i' :init='init'/>
+                <FormMenu :params='item.params' :item='item.compObj' v-else :key='i' :init='init' :jsCompleted='jsCompletedIn'
+                :onlyShow="onlyShowIn" />
             </template>
         </el-collapse>
     </section>
@@ -32,6 +34,14 @@ export default {
         },
         init:{
             type:[String,Function],
+        },
+        jsCompleted:{
+            type:Boolean,
+            default:false,
+        },
+        onlyShow:{
+            type:Boolean,
+            default:false
         }
     },
     watch:{
@@ -41,24 +51,38 @@ export default {
             },
             deep:true,
             immediate:true,
-        }
+        },
+        jsCompleted:{
+            handler(val){
+                this.jsCompletedIn=val
+            },
+            immediate:true,
+        },
+        onlyShow:{
+            handler(val){
+                this.onlyShowIn=val
+            },
+            immediate:true,
+        },
     },
     data(){
         return {
-            activeNames:[]
+            activeNames:[],
+            jsCompletedIn:false,
+            onlyShowIn:false,
         }
     },
 }
 </script>
-<style scoped lang='scss'>
+<style scoped lang='stylus'>
 /deep/.el-collapse-item{
     padding:10px;
-    box-sizing: border-box;
+    box-sizing border-box;
 }
 /deep/.el-collapse-item__header{
     padding: 0 10px;
-    box-sizing: border-box;
-    font-size: 16px;
+    box-sizing border-box;
+    font-size 16px;
     font-weight:bold;
     background-color:#E5E3E0;
     // margin-bottom:15px;
