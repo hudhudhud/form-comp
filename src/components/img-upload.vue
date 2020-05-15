@@ -44,7 +44,7 @@ export default {
     }
 }
 </script>
-<style lang="stylus" scoped>
+<style lang="scss" scoped>
 .imgs-area{
     padding:0 20px;
     display:flex;
@@ -67,7 +67,7 @@ export default {
             padding: 1.067vw;
         }
         img{
-            box-sizing border-box;
+            box-sizing:border-box;
             border: 1px dashed #c9c9c9;
             border-radius: 1.333vw;
             width:100px;
@@ -81,8 +81,8 @@ export default {
         border: 1px dashed #c9c9c9;
         border-radius: 1.333vw;
         color: #666;
-        text-align center;
-        box-sizing border-box
+        text-align :center;
+        box-sizing:border-box
         input[type="file"]{
             opacity:0;
             position:absolute;
@@ -94,7 +94,7 @@ export default {
             height:100%;
         }
         i{
-            line-height 100px;
+            line-height:100px;
         }
     }
 }

@@ -205,11 +205,11 @@ export default {
             //         setDocumentTitle(this.formInfo.title)
             //     }
             //     else{
-            //         toast.show(res.message)
+            //         this.$toast(res.message)
             //     }
             // }
             // // catch(e){
-            // //     toast.show("异常："+e)
+            // //     this.$toast("异常："+e)
             // // }
             // finally{
             //     this.$Indicator.close()
@@ -289,11 +289,11 @@ export default {
                 //    }
                 // }
                 // else{
-                //     toast.show(res.message)
+                //     this.$toast(res.message)
                 // }
             // }
             // catch(e){
-            //     toast.show("获取数据异常："+e)
+            //     this.$toast("获取数据异常："+e)
             // }
             // finally{
             //     this.$Indicator.close()
@@ -327,7 +327,7 @@ export default {
             console.log('submit',res)
             // return
             if(!this.userId){
-                toast.show('请先登录！','','middle', 2500)
+                this.$toast('请先登录！','','middle', 2500)
                 return
             }
             if(!isGoSubmit) return
@@ -342,7 +342,7 @@ export default {
                     formData.append('docId',this.$route.params.docId)
                 }
                 else{
-                    toast.show("参数错误，docId为空！")
+                    this.$toast("参数错误，docId为空！")
                     return
                 }
             }
@@ -373,14 +373,14 @@ export default {
             // Request.post(WORK_FLOW_FORM_SAVE,formData,config)
             // .then(res=>{
             //     if(res.success){
-            //         toast.show('保存成功！','','middle', 1500)
+            //         this.$toast('保存成功！','','middle', 1500)
             //         setTimeout(()=>{
             //             window.history.go(-1)
             //             this.btnLoading=false
             //         },1500)
             //     }
             //     else{
-            //         toast.show(res.message)
+            //         this.$toast(res.message)
             //     }
             // })
             // .catch(e=>{
@@ -410,7 +410,7 @@ export default {
                 if(comp.item.type!=='detail'){
                     if(comp.item.require&&isEmpty(comp.item.value)){
                         console.log('submit...error',res)
-                        toast.show('请输入'+comp.item.label)
+                        this.$toast('请输入'+comp.item.label)
                         return false
                     }     
                 }
@@ -439,7 +439,7 @@ export default {
                                 //必填检查
                                 if(para.require&&isEmpty(obj[para.key])){
                                     console.log('submit...error',res)
-                                    toast.show('请输入'+para.label)
+                                    this.$toast('请输入'+para.label)
                                     return false
                                 }
                             }
@@ -469,7 +469,7 @@ export default {
                             let reg = new RegExp(rule.regexp,'gm')
                             if(!reg.test(comp.item.value)){
                                 console.log('submit...error',res)
-                                toast.show(rule.message?rule.message:(comp.item.label+'输入格式有误'))
+                                this.$toast(rule.message?rule.message:(comp.item.label+'输入格式有误'))
                                 return false
                             }
                         }

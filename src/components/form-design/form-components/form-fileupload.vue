@@ -40,7 +40,7 @@
 <script>
 import {Field} from 'mint-ui'
 import {Tag,Dialog,Button as ELButton} from 'element-ui'
-// import {toast,storage} from '@/utils'
+// import {this.$toast,storage} from '@/utils'
 // import DetailAttachmentList from "../../detail-attachment-list";
 // import {WORK_FLOW_DELETE_FILE} from '../../../api'
 // import Request from '@/utils/request'
@@ -152,7 +152,7 @@ export default {
             let files = Array.from(e.target.files)
             if(this.item.maxNum&&this.fileList.length+files.length>this.item.maxNum){
                 files = files.slice(0,this.item.maxNum-this.fileList.length)
-                toast.show('最多上传'+this.item.maxNum+'个文件！','','middle', 3000)
+                this.$toast('最多上传'+this.item.maxNum+'个文件！','','middle', 3000)
                 if(files.length){
                     this.fileList.push(...files)
                 }
@@ -162,7 +162,7 @@ export default {
             if(this.item.maxSize){
                 files = files.filter(file=>(file.size/1024)<=this.item.maxSize)
                 if(files.length!=e.target.files.length){
-                    toast.show('文件大小不能超过'+this.item.maxSize+'KB!','','middle', 3000)
+                    this.$toast('文件大小不能超过'+this.item.maxSize+'KB!','','middle', 3000)
                 }
             }
             if(files.length){

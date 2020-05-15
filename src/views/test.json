@@ -10,10 +10,10 @@
 			"label": "通讯录",
 			"fromDepartmentId": 0,
 			"mode": "multi",
-			"chooseType": ["user"],
+			"chooseType": ["department"],
 			"require": false,
-			"selectedDepartmentIds": [],
-			"selectedUserIds": ["cys2646"],
+			"selectedDepartmentIds": ["500453322"],
+			"selectedUserIds": [],
 			"callback": "bookChange"
 		}, {
 			"type": "input",
@@ -110,11 +110,12 @@
 				"name": "class",
 				"value": ["cls-init"]
 			}],
-            "require": false
+			"require": false,
+			"callback":"change"
 		}, 
 		{
 			"type": "picker",
-			"label": "异步对象选择2",
+			"label": "上个picker联动",
 			"key": "select2",
 			"options": [],
 			"labelKey": "name",

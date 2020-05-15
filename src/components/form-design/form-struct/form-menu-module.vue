@@ -74,15 +74,15 @@ export default {
     },
 }
 </script>
-<style scoped lang='stylus'>
+<style scoped lang='scss'>
 /deep/.el-collapse-item{
     padding:10px;
-    box-sizing border-box;
+    box-sizing: border-box;
 }
 /deep/.el-collapse-item__header{
     padding: 0 10px;
-    box-sizing border-box;
-    font-size 16px;
+    box-sizing: border-box;
+    font-size: 16px;
     font-weight:bold;
     background-color:#E5E3E0;
     // margin-bottom:15px;

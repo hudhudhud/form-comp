@@ -1,4 +1,4 @@
-let setParamGlobal;
+var setParamGlobal;
 function inputclick(e){
     console.log('inputclick....',e)
 }
@@ -23,10 +23,12 @@ function getCheckbox(setOptions){
 function test(e){console.log('click',e)};
 function test1(e){console.log('click','test1111111')};
 function bookChange(setParam,payload){
+    // alert(JSON.stringify(payload.value))
     if(!payload.value||!payload.value.userList)return
+    let value = payload.value.userList.map(it=>it.id).join()||payload.value.departmentList.map(it=>it.id).join()
     setParam([{
             key:'book',
-            value:payload.value.userList.map(it=>it.id).join(),//最终保存到数据库的值
+            value:value,//最终保存到数据库的值
             // value:{
             //     value:payload.value.userList.map(it=>it.id).join(),//最终保存到数据库的值
             //     showValue:payload.value.userList.map(it=>it.name).join(),//显示在页面上的值
@@ -77,7 +79,7 @@ function change(setParam,payload){
         }
     }
     else if(payload.from=="number"){
-        setParam([{key:"select2",options:[{id:1,name:"one"},{id:2,name:"two"}]}])
+        setParam([{key:"select2","resetOptions":[{id:1,name:"one"},{id:2,name:"two"}]}])
     }
 }
 function getNumber(setOptions){

@@ -83,7 +83,6 @@
 import {Cell,Popup,Button} from 'mint-ui'
 import {Collapse,CollapseItem,Tag,Dialog,Button as ELButton} from 'element-ui'
 import FormMenu from '../form-struct/form-menu'
-import {toast} from '@/utils'
 import {isEmpty} from '@/utils/index.js'
 export default {
     components:{
@@ -228,7 +227,7 @@ export default {
            for(let comp of this.tempDetail.componentList){
                 if(comp.item.show!==false&&comp.item.require&&isEmpty(comp.item.value)){
                     console.log('submit...error',this.tempDetail)
-                    toast.show('请输入'+comp.item.label)
+                    this.$toast('请输入'+comp.item.label)
                     return false
                 }
                 //正则校验
@@ -238,7 +237,7 @@ export default {
                             let reg = new RegExp(rule.regexp,'gm')
                             if(!reg.test(comp.item.value)){
                                 console.log('submit...error',this.tempDetail)
-                                toast.show(rule.message?rule.message:(comp.item.label+'输入格式有误'))
+                                this.$toast(rule.message?rule.message:(comp.item.label+'输入格式有误'))
                                 return false
                             }
                         }
