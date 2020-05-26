@@ -49,6 +49,9 @@
                 <a href="#addressBook">
                     addressBook 通讯录选择
                 </a>
+                <a href="#deptSelect">
+                    deptSelect 部门选择（自定义数据源）
+                </a>
                 <a href="#hidden">
                     hidden 隐藏元素
                 </a>
@@ -86,12 +89,13 @@
                                 },
                                 ...
                             ],
-                            "init":"init",//字符串函数名称或函数，初始化时执行，如需带入员工域账号等信息需要在此操作
+                            "init":"init",//初始化时执行，如需带入员工域账号等信息需要在此操作，适合赋初始值操作,<span style='color:red'>注只在表单是新增状态时执行</span>
+                            <span style='color:red'>"editInit":"editInit",//同init,区别是在表单是修改状态时执行</span>
                             "beforeSubmit":"beforeSubmit", //字符串函数名称或函数，提交前执行
                             "descHtml":"&lt;p&gt; style='color:red;height:50px'>我是说明&lt;/p&gt;" //放在表单顶部的说明文字
                         }
 
-                        init：初始化函数默认两个参数，设置参数函数，以及带域名信息的对象 例如：
+                        init：初始化函数默认两个参数，设置参数函数，以及带域名信息的对象，<span style='color:red'>只在表单是新增状态时执行</span> 例如：
                         function init(setParam,payload){
                             //payload包括用户域账号:payload.userId ,企业微信应用编号:payload.state,用户userTicket:payload.code
                             //setParam需要一个参数，即需要重置的配置对象，结构跟配置信息的params一致，根据key值来决定要重置的组件
@@ -142,7 +146,8 @@
                                 }
                             ],
                             "class":'modu-class',  //模块样式自定义
-                            "init":'init',  //初始化函数，同配置整体结构
+                            "init":"init",//初始化时执行，如需带入员工域账号等信息需要在此操作，适合赋初始值操作,<span style='color:red'>注只在表单是新增状态时执行</span>
+                            <span style='color:red'>"editInit":"editInit",//同init,区别是在表单是修改状态时执行</span>
                             "beforeSubmit":'beforeSubmit',//提交前函数，同配置整体结构
                             "descHtml":"&lt;p&gt; style='color:red;height:50px'>我是说明&lt;/p&gt;" //放在表单顶部的说明html
                         }
@@ -599,7 +604,6 @@
                             "fromDepartmentId": 0,// 必填，表示打开的通讯录从指定的部门开始展示，-1表示自己所在部门开始, 0表示从最上层开始
                             "mode":"multi",// 必填，选择模式，single表示单选，multi表示多选
                             "chooseType": ["user"],// 必填，选择限制类型，指定department、user中的一个或者多个,
-                            "selectedDepartmentIds": [],// 非必填，已选部门ID列表。用于多次选人时可重入，single模式下请勿填入多个id
                             "selectedUserIds": [],// 非必填，已选用户ID(域账号)列表。用于多次选人时可重入，single模式下请勿填入多个id
                             "callback":"bookChange",
                             <span style='color:red'>
@@ -614,10 +618,12 @@
                         callback：所有组件都有该配置项，组件内部值发生变化时触发，
                         接收两个参数，第一个为重置配置的函数，第二个为组件变化的信息对象，如下： 
                         payload对象中包括值payload.value，组件字段名称payload.fromParam，组件整个配置对象payload.fromParam
-                        该组件调用的是<a href='https://work.weixin.qq.com/api/doc/90000/90136/91793' target='_blank'>企业微信的接口</a>，payload.value和payload.fromParam.selectItems相同，都为选中的对象，对象中
+                        该组件mode包含"user"时调用的是<a href='https://work.weixin.qq.com/api/doc/90000/90136/91793' target='_blank'>企业微信的接口</a>，payload.value和payload.fromParam.selectItems相同，都为选中的对象，对象中
                         包含人员信息和部门信息
                         如{
-                            departmentList:[{id:1,name:'部门1'}，{id:2,name:'部门2'}],//部门信息
+                            //部门列表,parents包含所有上级部门信息
+                            departmentList:[{id:101,name:'研发及平台方案部',parents:[{id:100,name:'信息技术部'},{id:101,name:'研发及平台方案部'}]}],
+                            //用户列表
                             userList:[{id:1,name:'张三',avatar:''//头像链接}，{id:2,name:'李四',avatar:''}],//人员信息
                         }
                         例如下，
@@ -630,6 +636,111 @@
                                     showValue:payload.value.userList.map(it=>it.name).join(),//显示在页面上的值
                                 }
                             }])
+                        }
+                    </pre>
+                </div>
+                <div id='deptSelect'>
+                    <pre>
+                        deptSelect 部门选择（自定义数据源）：
+                        {
+                            "type": "deptSelect", //必填，组件类型
+                            "key":"department", //必填，字段名称；且为input元素上data-key属性值，获取值方法$("input[data-key="department"]").val()
+                            "label":"自定义部门",                           
+                            "require": false,
+                            "chooseMutiple": true, //是否为多选
+                            "options":"getDeptData",//必填，字符串（函数名称）,
+                            "labelKey":"deptName", //非必填，默认label
+                            "valueKey":"deptId",//非必填，默认value
+                            "callback": "deptChange"
+                        
+                            //以下配置项同input，作用于input
+                            "attributes": [],//如果是class或style，作用到组件最外层
+                            "events": [],
+                            "callback":"deptChange"
+                        }
+
+                        options:获取数据源的函数，接收两个参数，第一个参数为重置列表项的函数，
+                        第二个参数为当前的点击数据项，返回整个对象，并且包含parents属性即其上级对象,注：第一次加载时，payload为undefined
+                        payload结构：
+                        {
+                            deptId: 21
+                            deptName: "研发及平台方案部"
+                            other: "two2"
+                            parents:[{
+                                deptId: 2
+                                deptName: "信息技术部"
+                                other: "two"
+                            }, {
+                                deptId: 21
+                                deptName: "研发及平台方案部"
+                                other: "two2"
+                            }]
+                        }
+                        例如：
+                        function getDeptData(setOptions,payload){
+                            //第一次加载设置一级部门项
+                            if(!payload){
+                                setOptions([
+                                    {deptId:1,deptName:'人力资源部',other:'one'},
+                                    {deptId:2,deptName:'信息技术部',other:'two'},
+                                ]) 
+                            }
+                            //点击项后重置列表项
+                            else{
+                                if(payload.deptId==1){
+                                    setTimeout(() => {
+                                        setOptions([
+                                            {deptId:10,deptName:'人才管理部',other:'one1'},
+                                            {deptId:11,deptName:'合作管理部',other:'two1'},
+                                        ])
+                                    }, 500);
+                                }
+                                else if(payload.deptId==2){
+                                    setOptions([
+                                        {deptId:20,deptName:'IT基础架构部',other:'one2'},
+                                        {deptId:21,deptName:'研发及平台方案部',other:'two2'},
+                                    ])
+                                }
+                                else{
+                                    setOptions([])
+                                }
+                            }
+                        }
+
+                        callback：所有组件都有该配置项，组件内部值发生变化时触发，
+                        接收两个参数，第一个为重置配置的函数，第二个为组件变化的信息对象，如下：
+                        function deptChange(setParam,payload){
+                            //payload对象中包括值payload.value(由对象中valueKey的逗号分隔的字符串），如单选时为"1",多选时为"1,2"
+                            //组件字段名称payload.fromParam，组件整个配置对象payload.fromParam
+                            //此时payload.fromParam包含选中的项，即payload.fromParam.selectItems，为对象数组,
+                            //如[{
+                                deptId: 21
+                                deptName: "研发及平台方案部"
+                                other: "two2"
+                                parents:[{
+                                    deptId: 2
+                                    deptName: "信息技术部"
+                                    other: "two"
+                                }, {
+                                    deptId: 21
+                                    deptName: "研发及平台方案部"
+                                    other: "two2"
+                                }]
+                            }]
+
+                            
+                            if(!payload.fromParam.selectItems)return
+                            let showValues=[]
+                            payload.fromParam.selectItems.forEach(function(item){
+                                showValues.push(item.deptName)
+                            })
+                            setParam([{
+                                key:'department_customer',
+                                value:{
+                                    value:payload.value,//最终保存到数据库的值
+                                    showValue:showValues.join(',')//显示在输入框里的值
+                                }
+                            }])  
                         }
                     </pre>
                 </div>
