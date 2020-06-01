@@ -22,7 +22,6 @@ import FormMenu from '../components/form-design/form-struct/form-menu'
 import FormMenuModule from '../components/form-design/form-struct/form-menu-module'
 import {isEmpty} from '@/utils/index.js'
 import {Button} from 'element-ui'
-import formJson from './test.json'
 export default {
     components:{
         [Button.name]:Button,
@@ -143,7 +142,7 @@ export default {
                     },1000)
                 },
             },
-            formStruct:formJson,
+            formStruct:{},
             modules:[],
             showAsModule:false,
             formInfo:{},
@@ -166,6 +165,7 @@ export default {
                 return
             }
             if(to.name==='form'){
+                vm.formStruct=require('./test.json')
                 vm.isEdit=false
                 vm.dataInit()
             }
