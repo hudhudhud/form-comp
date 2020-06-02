@@ -27,6 +27,13 @@ export default new Router({
             meta:{
                 keepAlive:true
             }
+        },{
+            path: '/render',
+            name: 'render',
+            component: ()=>import('../views/render.vue'),
+            meta:{
+                keepAlive:true
+            }
         }
     ]
 })

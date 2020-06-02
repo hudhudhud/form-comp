@@ -1,5 +1,6 @@
 <template>
     <section>
+        <Home msg='啦啦啦'/>
         <mt-cell-swipe
         title="标题文字"
         ref="cell-swipe"
@@ -19,7 +20,11 @@
     </section>
 </template>
 <script>
+import Home from '../utils/render.js'
 export default {
+    components:{
+        Home,
+    },
     data(){
         return{
             moveDis:0
