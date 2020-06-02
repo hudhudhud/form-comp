@@ -5,11 +5,11 @@ module.exports = {
     lintOnSave: false ,// 取消 eslint 验证
     // 不需要生产环境的 source map，将其设置为 false 以加速生产环境构建
     productionSourceMap: false,
-    chainWebpack: config => {
-    	config
-    	.plugin('webpack-bundle-analyzer')
-    	.use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
-    },
+    // chainWebpack: config => {
+    // 	config
+    // 	.plugin('webpack-bundle-analyzer')
+    // 	.use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+    // },
     configureWebpack: config => {
         if (process.env.NODE_ENV === 'production') {
             // 为生产环境修改配置...
