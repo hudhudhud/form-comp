@@ -26,4 +26,11 @@ p{
 .mint-indicator-wrapper{
   z-index:99999999 !important;
 }
+// iphonex 安全区
+.safe-area-inset {
+    display: block;
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+    background-color:inherit;
+}
 </style>
