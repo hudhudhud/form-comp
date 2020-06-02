@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build  & scp -r ./dist root@47.98.252.146:/usr/share/nginx/html",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
