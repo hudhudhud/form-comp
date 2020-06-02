@@ -60,20 +60,20 @@
     </section>
 </template>
 <script>
-import {Tag,Checkbox,Input, Button as ButtonEle} from 'element-ui'
-import {Popup,Button,InfiniteScroll } from 'mint-ui'
-import {isEmpty} from '@/utils/index.js'
-import Vue from 'vue'
-Vue.use(InfiniteScroll);
+// import {Tag,Checkbox,Input, Button as ButtonEle} from 'element-ui'
+// import {Popup,Button,InfiniteScroll } from 'mint-ui'
+// import {isEmpty} from '@/utils/index.js'
+// import Vue from 'vue'
+// Vue.use(InfiniteScroll);
 export default {
-    components:{
-        [Tag.name]:Tag,
-        [Popup.name]:Popup,
-        [Button.name]:Button,
-        [Checkbox.name]:Checkbox,
-        [ButtonEle.name]:ButtonEle,
-        [Input.name]:Input
-    },
+    // components:{
+    //     [Tag.name]:Tag,
+    //     [Popup.name]:Popup,
+    //     [Button.name]:Button,
+    //     [Checkbox.name]:Checkbox,
+    //     [ButtonEle.name]:ButtonEle,
+    //     [Input.name]:Input
+    // },
     props:{
         value:'',
         item:{
@@ -151,7 +151,10 @@ export default {
         dataSourceList:{
             handler(val){
                 this.list=val.map(it=>{
-                    let newIt=JSON.parse(JSON.stringify(it))
+                    let newIt={}//JSON.parse(JSON.stringify(it))
+                    Object.keys(it).forEach(key=>{
+                        this.$set(newIt,key,it[key])
+                    })
                     if(typeof it ==='object'){
                         this.labelKey=this.item.labelKey?this.item.labelKey:'label'
                         this.valueKey=this.item.valueKey?this.item.valueKey:'value'
@@ -421,15 +424,8 @@ export default {
 .overflow-hidden{
     overflow:hidden
 }
-.hips-indicator{
-    position:fixed !important;
-}
 </style>
 <style scoped lang='scss'>
-.mint-popup{
-  
-}
-
 .search-content{
     width:100vw;
     height:100vh;
@@ -439,9 +435,9 @@ export default {
     .list{
         overflow: scroll;
         margin-top:10px;
-        height :calc(100vh - 130px)
+        height:calc(100vh - 130px);
         &.chooseMutiple{
-            height: calc(100vh - 170px)
+            height:calc(100vh - 170px);
         }
         padding-top:80px;
         overflow-y:scroll;
@@ -489,7 +485,7 @@ export default {
         .main{
             font-size:17px;
             font-weight: 500;
-            color:#333
+            color:#333;
         }
         .label{
             font-size:12px;

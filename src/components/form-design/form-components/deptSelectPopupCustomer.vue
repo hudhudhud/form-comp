@@ -38,15 +38,8 @@
     </mt-popup>
 </template>
 <script>
-import {Tag,Checkbox,Input} from 'element-ui'
-import {Popup,Button } from 'mint-ui'
 export default {
     components:{
-        [Tag.name]:Tag,
-        [Popup.name]:Popup,
-        [Button.name]:Button,
-        [Checkbox.name]:Checkbox,
-        [Input.name]:Input
     },
     props:{
         value:{
@@ -141,7 +134,7 @@ export default {
                 else{
                 //否则获取其子部门信息
                     if(typeof this.optionsFunc == 'string' && typeof window[this.optionsFunc]=== 'function'){
-                        this.$hips.indicator.show()
+                        this.$Indicator.open()
                         this.loading=true
 
                         //点击时带上其上级对象数组
@@ -171,7 +164,7 @@ export default {
                             this.allList.push(...this.list)
                             this.path.push(this.list)
                             this.$nextTick(()=>{
-                                this.$hips.indicator.hide()
+                                this.$Indicator.close()
                                 this.loading=false
                             })
                         },newItem)
@@ -181,7 +174,7 @@ export default {
             else{
                 //获取第一级部门
                 if(typeof this.optionsFunc == 'string' && typeof window[this.optionsFunc]=== 'function'){
-                   this.$hips.indicator.show()
+                    this.$Indicator.open()
                     this.loading=true
                     this.path=[]
                     this.allList=[]
@@ -197,7 +190,7 @@ export default {
                         this.allList.push(...this.list)
                         this.path.push(this.list)
                         this.$nextTick(()=>{
-                            this.$hips.indicator.hide()
+                            this.$Indicator.close()
                             this.loading=false
                         })
                     })
@@ -218,7 +211,7 @@ export default {
 </script>
 <style>
 .overflow-hidden{
-    overflow:hidden
+    overflow:hidden;
 }
 .hips-indicator{
     position:fixed !important;
@@ -234,9 +227,9 @@ export default {
     .list{
         overflow: scroll;
         margin-top:10px;
-        height :calc(100vh - 95px)
+        height :calc(100vh - 95px);
         &.chooseMutiple{
-            height :calc(100vh - 135px)
+            height :calc(100vh - 135px);
         }
         padding-top:80px;
         overflow-y:scroll;

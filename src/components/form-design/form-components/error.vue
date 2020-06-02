@@ -19,6 +19,6 @@ export default {
 
 <style scoped>
 section{
-    color:red
+    color:red;
 }
 </style>

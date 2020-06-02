@@ -151,8 +151,8 @@ input[type="radio"] {
         display:flex;
         flex-wrap:wrap;
        .cell-radio-label{
-            white-space: nowrap
-            max-width 250px;
+            white-space: nowrap;
+            max-width: 250px;
             min-width: 60px;
         }
     }
@@ -169,7 +169,7 @@ input[type="radio"] {
 /deep/.mint-radio-core{
     width:15px;
     height:15px;
-    box-sizing border-box
+    box-sizing:border-box;
     &:after{
         top: 2.5px;
         left: 2.5px;

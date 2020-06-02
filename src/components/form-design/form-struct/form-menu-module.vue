@@ -14,12 +14,12 @@
 </template>
 <script>
 import FormMenu from './form-menu'
-import {Collapse,CollapseItem} from 'element-ui'
+// import {Collapse,CollapseItem} from 'element-ui'
 export default {
     components:{
         FormMenu,
-        [Collapse.name]:Collapse,
-        [CollapseItem.name]:CollapseItem,
+        // [Collapse.name]:Collapse,
+        // [CollapseItem.name]:CollapseItem,
     },
     props:{
         modules:{

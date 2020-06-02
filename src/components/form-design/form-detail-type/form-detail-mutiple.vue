@@ -19,15 +19,15 @@
     </section>
 </template>
 <script>
-import {Cell} from 'mint-ui'
-import {Collapse,CollapseItem} from 'element-ui'
+// import {Cell} from 'mint-ui'
+// import {Collapse,CollapseItem} from 'element-ui'
 import FormMenu from '../form-struct/form-menu'
 import commonFunc from '../common.js'
 export default {
     components:{
-        [Cell.name]:Cell,
-        [Collapse.name]:Collapse,
-        [CollapseItem.name]:CollapseItem,
+        // [Cell.name]:Cell,
+        // [Collapse.name]:Collapse,
+        // [CollapseItem.name]:CollapseItem,
         FormMenu,
     },
     props:{

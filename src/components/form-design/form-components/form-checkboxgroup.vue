@@ -217,8 +217,8 @@ input[type="checkbox"] {
         flex-wrap:wrap;
        .cell-checkbox-label{
             // width:80px;
-            white-space: nowrap
-            max-width 250px;
+            white-space: nowrap;
+            max-width: 250px;
         }
     }
     .column{

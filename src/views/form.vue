@@ -21,10 +21,11 @@ import {storage,setDocumentTitle} from '@/utils'
 import FormMenu from '../components/form-design/form-struct/form-menu'
 import FormMenuModule from '../components/form-design/form-struct/form-menu-module'
 import {isEmpty} from '@/utils/index.js'
-import {Button} from 'element-ui'
+// import {Button} from 'element-ui'
+
 export default {
     components:{
-        [Button.name]:Button,
+        // [Button.name]:Button,
         FormMenu,
         FormMenuModule,
     },
@@ -158,6 +159,7 @@ export default {
     },
     beforeRouteEnter(to, from, next) {
         next(async (vm) => {
+            // vm.$Indicator.open()
             // vm.userInfo=storage.get('user-info')
             // vm.userId=vm.userInfo?vm.userInfo.userId:''
             //预览文件返回，不需要重新加载
@@ -591,8 +593,9 @@ export default {
     width: 100%;
     padding-bottom:60px;
     .btns{
-        width:100%;
         position:fixed;
+        left:0;
+        right:0;
         bottom:0;
         height:50px;
         box-shadow: 0 -5px 10px rgba(0,0,0,0.1);
@@ -602,6 +605,4 @@ export default {
         background-color:#fff;
     }
 }
-
-
 </style>

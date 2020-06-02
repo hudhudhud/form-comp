@@ -313,7 +313,7 @@ export default {
         bottom: 0;
         left: 0;
         background-color:#fff;
-        z-index:10000
+        z-index:10000;
     }
 }
 </style>

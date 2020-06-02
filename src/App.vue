@@ -13,43 +13,17 @@ export default {
 }
 </script>
 <style  lang='scss'>
-*{
-  box-sizing: border-box;
-}
-.cell-field{
-  display: flex;
+html,body,#app{
   width:100%;
-  min-height: 48px;
-  line-height: 1;
-  padding: 0 10px;
-  font-size: 16px;
-  align-items: center;
-  border-top:1px solid #d9d9d9;
-  .cell-title{
-      width:105px;
-  }
-  .cell-value{
-      display: flex;
-      flex: 1;
-      align-items: center;
-      input[type=text]{
-          appearance: none;
-          border-radius: 0;
-          border: 0;
-          box-flex: 1;
-          flex: 1;
-          outline: 0;
-          line-height: 1.6;
-          font-size: inherit;
-          width: 100%;
-      }
-      .cell-checkbox-label,.cell-radio-label{
-       width:80px;
-      
-      }
-  }
-  &:last-child{
-      border-bottom:1px solid #d9d9d9;
-  }
+  height:100%;
+  margin:0;
+  padding:0;
+}
+p{
+  margin:0;
+  padding:0;
+}
+.mint-indicator-wrapper{
+  z-index:99999999 !important;
 }
 </style>

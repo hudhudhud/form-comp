@@ -287,7 +287,7 @@ export default {
             word-break: break-all;
         }
     }
-    position:relative
+    position:relative;
     .error-info{
         position:absolute;
         bottom:0;

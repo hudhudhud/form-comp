@@ -80,21 +80,21 @@
     </section>
 </template>
 <script>
-import {Cell,Popup,Button} from 'mint-ui'
-import {Collapse,CollapseItem,Tag,Dialog,Button as ELButton} from 'element-ui'
+// import {Cell,Popup,Button} from 'mint-ui'
+// import {Collapse,CollapseItem,Tag,Dialog,Button as ELButton} from 'element-ui'
 import FormMenu from '../form-struct/form-menu'
 import {isEmpty} from '@/utils/index.js'
 export default {
     components:{
-        [Cell.name]:Cell,
-        [Popup.name]:Popup,
-        [Button.name]:Button,
-        [Collapse.name]:Collapse,
-        [CollapseItem.name]:CollapseItem,
-        [Tag.name]:Tag,
+        // [Cell.name]:Cell,
+        // [Popup.name]:Popup,
+        // [Button.name]:Button,
+        // [Collapse.name]:Collapse,
+        // [CollapseItem.name]:CollapseItem,
+        // [Tag.name]:Tag,
         FormMenu,
-        [ELButton.name]:ELButton,
-        [Dialog.name]:Dialog
+        // [ELButton.name]:ELButton,
+        // [Dialog.name]:Dialog
     },
     props:{
         value:'',

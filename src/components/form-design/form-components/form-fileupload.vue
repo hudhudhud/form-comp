@@ -38,20 +38,20 @@
 </section>
 </template>
 <script>
-import {Field} from 'mint-ui'
-import {Tag,Dialog,Button as ELButton} from 'element-ui'
+// import {Field} from 'mint-ui'
+// import {Tag,Dialog,Button as ELButton} from 'element-ui'
 // import {this.$toast,storage} from '@/utils'
 // import DetailAttachmentList from "../../detail-attachment-list";
 // import {WORK_FLOW_DELETE_FILE} from '../../../api'
 // import Request from '@/utils/request'
 export default {
-    components:{
-        [Field.name]:Field,
-        [Tag.name]:Tag,
-        // DetailAttachmentList,
-        [ELButton.name]:ELButton,
-        [Dialog.name]:Dialog
-    },
+    // components:{
+    //     [Field.name]:Field,
+    //     [Tag.name]:Tag,
+    //     // DetailAttachmentList,
+    //     [ELButton.name]:ELButton,
+    //     [Dialog.name]:Dialog
+    // },
     props:{
         value:'',
         item:{

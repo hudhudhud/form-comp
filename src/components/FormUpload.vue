@@ -31,15 +31,15 @@
 </section>
 </template>
 <script>
-import {Field} from 'mint-ui'
-import {Tag,Dialog,Button as ELButton} from 'element-ui'
+// import {Field} from 'mint-ui'
+// import {Tag,Dialog,Button as ELButton} from 'element-ui'
 export default {
-    components:{
-        [Field.name]:Field,
-        [Tag.name]:Tag,
-        [ELButton.name]:ELButton,
-        [Dialog.name]:Dialog
-    },
+    // components:{
+    //     [Field.name]:Field,
+    //     [Tag.name]:Tag,
+    //     [ELButton.name]:ELButton,
+    //     [Dialog.name]:Dialog
+    // },
     props:{
         value:'',
         item:{

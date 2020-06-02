@@ -1,4 +1,47 @@
 var setParamGlobal;
+function getDeptData(setOptions,payload){
+    console.log('getDeptData....',payload)
+    if(!payload){
+            setOptions([
+                {deptId:1,deptName:'人力资源部',other:'one'},
+                {deptId:2,deptName:'信息技术部',other:'two'},
+            ]) 
+    }
+    else{
+        if(payload.deptId==1){
+            setTimeout(() => {
+                setOptions([
+                    {deptId:10,deptName:'人才管理部',other:'one1'},
+                    {deptId:11,deptName:'合作管理部',other:'two1'},
+                ])
+            }, 500);
+        }
+        else if(payload.deptId==2){
+            setOptions([
+                {deptId:20,deptName:'IT基础架构部',other:'one2'},
+                {deptId:21,deptName:'研发及平台方案部',other:'two2'},
+            ])
+        }
+        else{
+            setOptions([])
+        }
+    }
+}
+function deptChange(setParam,payload){
+    console.log('deptChange...',payload)
+    if(!payload.fromParam.selectItems)return
+    let showValues=[]
+    payload.fromParam.selectItems.forEach(function(item){
+        showValues.push(item.deptName)
+    })
+    setParam([{
+        key:'department_customer',
+        value:{
+            value:payload.value,//最终保存到数据库的值
+            showValue:showValues.join(',')//显示在输入框里的值
+        }
+    }])
+}
 function inputclick(e){
     console.log('inputclick....',e)
 }
@@ -79,7 +122,12 @@ function change(setParam,payload){
         }
     }
     else if(payload.from=="number"){
-        setParam([{key:"select2","resetOptions":[{id:1,name:"one"},{id:2,name:"two"}]}])
+        if(payload.value==1){
+            setParam([{key:"select2","resetOptions":[{id:1,name:"one"},{id:2,name:"two"}]}])
+        }
+        else{
+            setParam([{key:"select2","resetOptions":[{id:3,name:"three"},{id:4,name:"four"}]}])
+        }
     }
 }
 function getNumber(setOptions){

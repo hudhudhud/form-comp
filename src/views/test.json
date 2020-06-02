@@ -1,146 +1,169 @@
 {
 	"params": [
-    {
-			"type": "hidden",
-      "key": "hidden",
-      "value":"123"
-		},{
-			"type": "addressBook",
-			"key": "book",
-			"label": "通讯录",
-			"fromDepartmentId": 0,
-			"mode": "multi",
-			"chooseType": ["department"],
-			"require": false,
-			"selectedDepartmentIds": ["500453322"],
-			"selectedUserIds": [],
-			"callback": "bookChange"
-		}, {
+		{
 			"type": "input",
 			"key": "name",
 			"label": "姓名",
 			"require": true,
-			"attributes": [{
-				"name": "id",
-				"value": "name"
-      }],
-      "events": [ 
-          {
-              "name": "blur",
-              "handler": "inputclick"
-          }
-      ]
-		}, {
+			"attributes": [
+				{
+					"name": "id",
+					"value": "name"
+				}
+			],
+			"events": [
+				{
+					"name": "blur",
+					"handler": "inputclick"
+				}
+			]
+		},
+		{
 			"type": "input",
 			"key": "age",
-            "label": "年龄",
-            "require": false,
-			"rules": [{
-				"regexp": "^[0-9]*$",
-				"message": "年龄请输入整数"
-			}]
-		}, {
+			"label": "年龄",
+			"require": false,
+			"rules": [
+				{
+					"regexp": "^[0-9]*$",
+					"message": "年龄请输入整数"
+				}
+			]
+		},
+		{
 			"type": "dateTimePicker",
 			"key": "time",
 			"label": "生日",
 			"pickerType": "date",
-            "callback": "change",
-            "require": false
-		}, {
+			"callback": "change",
+			"require": false
+		},
+		{
 			"type": "textarea",
 			"label": "自我介绍",
 			"key": "intro",
 			"autoSize": true,
-            "disableClear": true,
-            "require": false
-		}, {
+			"disableClear": true,
+			"require": false
+		},
+		{
+			"type": "deptSelect",
+			"key": "department_customer",
+			"label": "部门",
+			"chooseMutiple": true,
+			"require": false,
+			"options": "getDeptData",
+			"labelKey": "deptName",
+			"valueKey": "deptId",
+			"callback": "deptChange"
+		},
+		{
 			"type": "radio",
 			"label": "性别",
 			"key": "sex",
-			"options": [{
-				"value": 0,
-				"label": "男"
-			}, {
-				"value": 1,
-				"label": "女"
-			}],
+			"options": [
+				{
+					"value": 0,
+					"label": "男"
+				},
+				{
+					"value": 1,
+					"label": "女"
+				}
+			],
 			"labelKey": "label",
 			"valueKey": "value",
 			"direction": "row",
-            "callback": "change1",
-            "require": false,
-            "readonly":false
-		}, {
+			"callback": "change1",
+			"require": false,
+			"readonly": false
+		},
+		{
 			"type": "checkboxGroup",
 			"label": "兴趣爱好",
 			"value": "0,1",
-            "key": "love",
-            "require": false,
-			"options": [{
-				"value": "0",
-				"name": "足球"
-			}, {
-				"value": "1",
-				"name": "篮球"
-			}, {
-				"value": "2",
-				"name": "羽毛球"
-			}, {
-				"value": "3",
-				"name": "毛球"
-			}],
+			"key": "love",
+			"require": false,
+			"options": [
+				{
+					"value": "0",
+					"name": "足球"
+				},
+				{
+					"value": "1",
+					"name": "篮球"
+				},
+				{
+					"value": "2",
+					"name": "羽毛球"
+				},
+				{
+					"value": "3",
+					"name": "毛球"
+				}
+			],
 			"labelKey": "name",
 			"valueKey": "value",
 			"direction": "column",
 			"callback": "change"
-		}, {
+		},
+		{
 			"type": "checkbox",
 			"label": "是否参加",
 			"value": false,
 			"key": "attend",
 			"optionLabel": "是",
-            "callback": "change",
-            "require": false
-		}, {
+			"callback": "change",
+			"require": false
+		},
+		{
 			"type": "picker",
 			"label": "异步值选择",
 			"key": "number",
 			"options": "getNumber",
-			"attributes": [{
-				"name": "class",
-				"value": ["cls-init"]
-			}],
+			"attributes": [
+				{
+					"name": "class",
+					"value": [
+						"cls-init"
+					]
+				}
+			],
 			"require": false,
-			"callback":"change"
-		}, 
+			"callback": "change"
+		},
 		{
 			"type": "picker",
 			"label": "上个picker联动",
 			"key": "select2",
 			"options": [],
 			"labelKey": "name",
-            "valueKey": "id",
-            "require": false
-		}, 
+			"valueKey": "id",
+			"require": false
+		},
 		{
 			"type": "cascaderselect",
 			"label": "级联选择",
 			"key": "address",
-			"options": [{
-				"label": "省",
-				"key": "province",
-				"func": "getProvince",
-				"changeFunc": "getCity",
-				"changeKey": "city"
-			}, {
-				"label": "市",
-				"key": "city",
-				"changeFunc": "getArea",
-				"changeKey": "area"
-			}, {
-				"label": "区",
-				"key": "area"
-			}],
+			"options": [
+				{
+					"label": "省",
+					"key": "province",
+					"func": "getProvince",
+					"changeFunc": "getCity",
+					"changeKey": "city"
+				},
+				{
+					"label": "市",
+					"key": "city",
+					"changeFunc": "getArea",
+					"changeKey": "area"
+				},
+				{
+					"label": "区",
+					"key": "area"
+				}
+			],
 			"showValueSplit": "-",
 			"callback": "change",
 			"labelKey": "name",
@@ -160,7 +183,7 @@
 			"searchFunc": "searchFunc",
 			"chooseMutiple": true,
 			"require": false,
-            "callback": "searchselectChange"
+			"callback": "searchselectChange"
 		},
 		{
 			"type": "searchSelect",
@@ -175,50 +198,58 @@
 			"searchFunc": "pageFunc",
 			"chooseMutiple": true,
 			"pagenble": true,
-            "pageSize": 10,
-            "require": false
+			"pageSize": 10,
+			"require": false
 		},
 		{
 			"type": "detail",
 			"key": "oneDetail",
 			"title": "1个字段",
-            "mode": "simple",
-            "require": false,
-			"params": [{
-				"key": "school",
-				"type": "input",
-				"label": "学校",
-				"value": ""
-			}]
+			"mode": "simple",
+			"require": false,
+			"params": [
+				{
+					"key": "school",
+					"type": "input",
+					"label": "学校",
+					"value": ""
+				}
+			]
 		},
 		{
 			"type": "detail",
 			"key": "twoDetail",
 			"title": "多个字段",
-            "mode": "mutiple",
-            "require": false,
-			"params": [{
+			"mode": "mutiple",
+			"require": false,
+			"params": [
+				{
 					"key": "school",
 					"type": "input",
 					"label": "学校",
 					"require": false,
 					"value": "123"
-				}, {
+				},
+				{
 					"type": "radio",
 					"label": "性别",
 					"key": "sex",
-					"options": [{
-						"value": 0,
-						"label": "男"
-					}, {
-						"value": 1,
-						"label": "女"
-					}],
+					"options": [
+						{
+							"value": 0,
+							"label": "男"
+						},
+						{
+							"value": 1,
+							"label": "女"
+						}
+					],
 					"labelKey": "label",
 					"valueKey": "value",
 					"direction": "row",
 					"callback": "change1"
-				}, {
+				},
+				{
 					"key": "class",
 					"type": "input",
 					"label": "专业"
@@ -245,40 +276,48 @@
 					"chooseMutiple": true
 				}
 			]
-		}, {
+		},
+		{
 			"type": "detail",
 			"key": "threeDetail",
 			"title": "复杂pop",
-            "mode": "pop",
-            "beforeSave":"beforeSave",
-			"params": [{
+			"mode": "pop",
+			"beforeSave": "beforeSave",
+			"params": [
+				{
 					"key": "school",
 					"type": "input",
 					"label": "学校",
 					"require": true
-				}, {
+				},
+				{
 					"type": "radio",
 					"label": "性别",
 					"value": 1,
 					"key": "sex",
-					"options": [{
-						"value": 0,
-						"label": "男"
-					}, {
-						"value": 1,
-						"label": "女"
-					}],
+					"options": [
+						{
+							"value": 0,
+							"label": "男"
+						},
+						{
+							"value": 1,
+							"label": "女"
+						}
+					],
 					"labelKey": "label",
 					"valueKey": "value",
 					"direction": "row",
 					"callback": "change1"
-				}, {
+				},
+				{
 					"type": "checkbox",
 					"label": "是否参加",
 					"value": false,
 					"key": "attend",
 					"optionLabel": "是"
-				}, {
+				},
+				{
 					"type": "searchSelect",
 					"label": "搜索选择",
 					"key": "friendsdetail",
@@ -297,36 +336,45 @@
 					"type": "cascaderselect",
 					"label": "级联选择",
 					"key": "address",
-					"options": [{
-						"label": "省",
-						"key": "province",
-						"func": "getProvince",
-						"changeFunc": "getCity",
-						"changeKey": "city"
-					}, {
-						"label": "市",
-						"key": "city",
-						"changeFunc": "getArea",
-						"changeKey": "area"
-					}, {
-						"label": "区",
-						"key": "area"
-					}],
+					"options": [
+						{
+							"label": "省",
+							"key": "province",
+							"func": "getProvince",
+							"changeFunc": "getCity",
+							"changeKey": "city"
+						},
+						{
+							"label": "市",
+							"key": "city",
+							"changeFunc": "getArea",
+							"changeKey": "area"
+						},
+						{
+							"label": "区",
+							"key": "area"
+						}
+					],
 					"value": "1,11,110",
 					"showValueSplit": "-",
 					"callback": "change",
 					"labelKey": "name",
 					"valueKey": "id",
 					"require": false
-				}, {
+				},
+				{
 					"type": "picker",
 					"label": "异步值选择",
 					"key": "number",
 					"options": "getNumber",
-					"attributes": [{
-						"name": "class",
-						"value": ["cls-init"]
-					}],
+					"attributes": [
+						{
+							"name": "class",
+							"value": [
+								"cls-init"
+							]
+						}
+					],
 					"value": 3,
 					"callback": "change"
 				},
@@ -338,17 +386,19 @@
 					"accept": "*"
 				}
 			]
-		}, {
+		},
+		{
 			"type": "fileUpload",
 			"key": "files",
 			"label": "文件上传",
 			"multiple": true,
 			"accept": "*",
 			"maxNum": 2,
-            "maxSize": 1024,
-            "require": false,
-            "callback":"fileChange"
-		}, {
+			"maxSize": 1024,
+			"require": false,
+			"callback": "fileChange"
+		},
+		{
 			"type": "fileUpload",
 			"key": "files1",
 			"label": "文件上传",
@@ -359,6 +409,5 @@
 		}
 	],
 	"init": "init",
-    "beforeSubmit": "beforeSubmit",
-    "descHtml":"<p style='color:red;height:50px'>我是说明</p>"
+	"beforeSubmit": "beforeSubmit"
 }
